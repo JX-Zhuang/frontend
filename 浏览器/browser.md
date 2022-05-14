@@ -16,6 +16,9 @@
     </body>
 </html>
 ```
+
+![进程交互](https://github.com/JX-Zhuang/frontend/blob/master/%E6%B5%8F%E8%A7%88%E5%99%A8/imgs/%E6%B5%8F%E8%A7%88%E5%99%A8-%E8%BF%9B%E7%A8%8B%E4%BA%A4%E4%BA%92.png)
+
 # 渲染流水线
 ## HTML转DOM树
 * HTML解析器把接收到的HTML字符串转化成DOM结构
@@ -27,6 +30,8 @@
     * 如果是文本Token，添加到栈顶元素的children中，不需要入栈
     * 如果是结束标签，此标签开始出栈
 
+![HTML转DOM树](https://github.com/JX-Zhuang/frontend/blob/master/%E6%B5%8F%E8%A7%88%E5%99%A8/imgs/HTML%E8%BD%ACDOM%E6%A0%91.png)
+
 ## CSS转stylesheet
 * 渲染进程把CSS文本转为浏览器中的`stylesheet`
 * 渲染引擎把CSS转化为`document.styleSheets`
@@ -35,6 +40,9 @@
 * DOM节点的样式保存在`ComputedStyle`中
 ## 创建布局树
 * 创建一颗只有可见元素的布局树
+
+![创建布局树](https://github.com/JX-Zhuang/frontend/blob/master/%E6%B5%8F%E8%A7%88%E5%99%A8/imgs/%E5%88%9B%E5%BB%BA%E5%B8%83%E5%B1%80%E6%A0%91.png)
+
 ## 计算布局
 * 计算每个元素的布局
 ## 生成分层树
