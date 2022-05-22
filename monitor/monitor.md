@@ -269,3 +269,16 @@ window.addEventListener('unload', () => {
     });
 })
 ```
+
+## 参考
+* sentry
+* [PerformanceObserver.observe](https://developer.mozilla.org/zh-CN/docs/Web/API/PerformanceObserver/observe)
+* [PerformanceEntry.entryType](https://developer.mozilla.org/zh-CN/docs/Web/API/PerformanceEntry/entryType)
+* [paint-timing](https://w3c.github.io/paint-timing/)
+* [event-timing](https://w3c.github.io/event-timing/)
+* [LCP](https://w3c.github.io/largest-contentful-paint/)
+* [FMP](https://docs.google.com/document/d/1BR94tJdZLsin5poeet0XoTW60M0SjvOJQttKT-JK8HI/view)
+* [time-to-interactive](https://github.com/WICG/time-to-interactive)
+* [DOMContentLoaded](https://developer.mozilla.org/zh-CN/docs/web/api/window/domcontentloaded_event)
+* [PerformanceTiming](https://developer.mozilla.org/zh-CN/docs/Web/API/PerformanceTiming)
+* [elementsFromPoint](https://developer.mozilla.org/zh-CN/docs/Web/API/Document/elementsFromPoint)
