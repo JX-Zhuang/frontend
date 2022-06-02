@@ -186,6 +186,7 @@ onload(function () {
 ```
 ### 性能指标
 * FMP:需要开发人员标注首次有意义的元素
+* 监控资源加载 `performance.getEntriesByType('resource')`
 ```
 const h1 = document.createElement('h1');
 h1.innerHTML = '最有意义的内容';
