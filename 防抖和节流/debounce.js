@@ -22,4 +22,14 @@ function debounce(func, wait, options = { leading: false }) {
     };
     return debouncedFn;
 }
+function debounce(func, wait) {
+    let timer = null;
+    return function () {
+        clearTimeout(timer);
+        timer = null;
+        timer = setTimeout(() => {
+            func.apply(this, arguments);
+        }, wait);
+    }
+}
 module.exports = debounce;

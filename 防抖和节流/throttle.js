@@ -23,4 +23,14 @@ function throttle(func, wait, options = { leading: true, trailing: true }) {
         }
     }
 }
+function throttle(func,wait){
+    let lastTime = 0;
+    return function(){
+        const currentTime = Date.now();
+        if(currentTime-lastTime>=wait){
+            func.apply(this,arguments);
+            lastTime = currentTime;
+        }
+    }
+}
 module.exports = throttle;

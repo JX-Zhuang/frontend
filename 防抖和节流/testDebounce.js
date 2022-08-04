@@ -27,6 +27,6 @@ setTimeout(() => {
 }, 4000);
 setTimeout(() => {
     let result = obj.debounced(5);
-    obj.debounced.cancel();
+    // obj.debounced.cancel();
     console.log('返回：', result);
 }, 5000);

@@ -4,7 +4,7 @@ const start = Date.now();
 function logger(n) {
     console.log(n, (Math.floor((Date.now() - start) / 1000)) + 's');
 }
-let throttled = throttle(logger, 3000, { leading: false, trailing: true });
+let throttled = throttle(logger, 2000, { leading: false, trailing: true });
 setTimeout(() => {
     throttled(1);
 }, 1000);
