@@ -1,3 +1,4 @@
+//防抖
 function debounce(func, wait, options = { leading: false }) {
     const { leading } = options;
     let timer, leadingInvoked = false;

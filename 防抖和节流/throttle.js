@@ -1,3 +1,4 @@
+//节流
 function throttle(func, wait, options = { leading: true, trailing: true }) {
     const { leading, trailing } = options;
     let lastTime = 0, timer;
