@@ -1,22 +1,15 @@
-const source = {
-    a: 1,
-    b: {
-        c: 1
-    },
-    c: {
-        a: 12
+const target = {
+    notProxied: "original value",
+    proxied: "original value"
+};
+const handler = {
+    get(target, prop, value) {
+        if (prop === "proxied") {
+            return "replaced value";
+        }
+        return Reflect.get(...arguments);
     }
 };
-const target = new Proxy(source, {
-    set: function (obj, key, value) {
-
-    },
-    get: function (obj, key) {
-
-    }
-});
-target.c.a = 123;
-function immer(source, callback) {
-    
-}
-console.log(target.b === source.b)
+const proxy = new Proxy(target, handler);
+console.log(proxy.notProxied); // "original value"
+console.log(proxy.proxied);    // "replaced value"
