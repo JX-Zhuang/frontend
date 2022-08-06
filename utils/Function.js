@@ -52,3 +52,10 @@ boundGetName('山东');
 function f1() { console.log('f1') };
 function f2() { console.log('f2') };
 f1.call.call(f2);
+Function.prototype.myCall = function(context,...argus){
+    context.__this__ = this;
+    const result = context.__this__(...argus);
+    delete  context.__this__;
+    return result; 
+}
+getName.myCall(obj,12,12);
