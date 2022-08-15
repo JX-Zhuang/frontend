@@ -1,3 +1,4 @@
+//防抖
 function debounce(func, wait, options = { leading: false }) {
     const { leading } = options;
     let timer, leadingInvoked = false;
@@ -20,5 +21,15 @@ function debounce(func, wait, options = { leading: false }) {
         leadingInvoked = false;
     };
     return debouncedFn;
+}
+function debounce(func, wait) {
+    let timer = null;
+    return function () {
+        clearTimeout(timer);
+        timer = null;
+        timer = setTimeout(() => {
+            func.apply(this, arguments);
+        }, wait);
+    }
 }
 module.exports = debounce;

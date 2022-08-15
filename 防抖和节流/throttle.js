@@ -1,3 +1,4 @@
+//节流
 function throttle(func, wait, options = { leading: true, trailing: true }) {
     const { leading, trailing } = options;
     let lastTime = 0, timer;
@@ -19,6 +20,16 @@ function throttle(func, wait, options = { leading: true, trailing: true }) {
                     lastTime = Date.now();
                 }, nextTime - currentTime);
             }
+        }
+    }
+}
+function throttle(func,wait){
+    let lastTime = 0;
+    return function(){
+        const currentTime = Date.now();
+        if(currentTime-lastTime>=wait){
+            func.apply(this,arguments);
+            lastTime = currentTime;
         }
     }
 }
