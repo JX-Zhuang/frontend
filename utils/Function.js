@@ -63,3 +63,8 @@ getName.myCall(obj,12,12);
 //Object.preventExtensions:不能添加新的属性
 //Object.seal:当前属性的值只要原来的可写的就可以改变
 //Object.freeze:冻结一个对象，不能修改，不能添加，不能删除
+
+
+//Object.keys:返回一个包含对象自身可枚举属性名称的数组
+//for...in:迭代一个对象的除Symbol以外的可枚举属性，包括继承的可枚举属性
+
