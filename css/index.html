@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .padding-20 {
+            padding: 20px;
+        }
+
+        .margin-20 {
+            margin: 20px;
+        }
+
+        .width-800 {
+            width: 800px;
+        }
+
+        .width-500 {
+            width: 500px;
+        }
+
+        .width-200 {
+            width: 200px;
+        }
+
+        .button {
+            width: 100px;
+            height: 40px;
+            transition: all 0.5s;
+            background: red;
+            border: none;
+        }
+
+        .button:link {
+            background: violet;
+        }
+
+        .button:hover {
+            background: green;
+        }
+
+        .button:focus {
+            background: yellow;
+        }
+
+        .button:active {
+            background: blue;
+        }
+
+        .m-b-80 {
+            margin-bottom: 80px;
+        }
+
+        .clear::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        .m-t-40 {
+            margin-top: 40px;
+        }
+
+        .title {
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <h4 class="title">
+        <a href="https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Building_blocks/The_box_model">盒模型</a>
+    </h4>
+    <ul>
+        <li>块级盒子
+            <ul>
+                <li>占据父容器的可用空间</li>
+                <li>盒子会换行</li>
+                <li>width、height都生效</li>
+                <li>padding、margin、border会把其他的元素从当前盒子周围“推开”</li>
+            </ul>
+        </li>
+        <li>内联盒子
+            <ul>
+                <li>盒子不会换行</li>
+                <li>width、height不生效</li>
+                <li>垂直方向的padding、margin、border会被应用，但是不会把其他的元素从当前盒子周围“推开”</li>
+                <li>水平方向的padding、margin、border会被应用，会把其他的元素从当前盒子周围“推开”</li>
+            </ul>
+        </li>
+    </ul>
+    <h4 class="title">
+        <a href="https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Building_blocks/Cascade_and_inheritance">层叠与继承</a>
+    </h4>
+    <ul>
+        <li>千位：style</li>
+        <li>百位：id</li>
+        <li>十位：类选择器、属性选择器、伪类</li>
+        <li>个位：元素、伪元素</li>
+        <li>千、百、十、个，不会进位</li>
+        <li>!important 优先级最高</li>
+    </ul>
+    <h4 class="title">
+        <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/Containing_block">布局和包含块</a>
+    </h4>
+    <ul>
+        <li>确定包含块
+            <ul>
+                <li>如果position是static、relative、sticky，最近的祖先块级元素的内容区的边缘组成</li>
+                <li>如果position是absolute，包含块是由它的最近的position的值不是static的祖先的内边距的边缘组成</li>
+                <li>如果position是fixed，包含块是viewport</li>
+                <li>如果position是absolute或fixed，包含块可能是满足以下条件的最近父元素的内边距的边缘组成
+                    <ul>
+                        <li>transform或perspective不是none</li>
+                        <li>will-change的值是transform或perspective</li>
+                        <li>filter不是none，或will-change是filter</li>
+                        <li>contain是paint</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>根据包含块计算百分值
+            <ul>
+                <li>height、top、bottom，是通过包含块的height的值。如果包含块的height，会根据内容变化，而包含块的position是relative或static，那么这些值是auto。
+                </li>
+                <li>width、left、right、margin、padding是根据包含块的width来计算的。</li>
+            </ul>
+        </li>
+    </ul>
+    <h4 class="title">
+        <a href="https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Building_blocks/Values_and_units">CSS 的值与单位</a>
+    </h4>
+    <ul>
+        <li>绝对单位</li>
+        <li>相对单位
+            <ul>
+                <li>em：font-size相对于父元素的字体大小，其他属性相对于自身字体大小</li>
+                <li>rem：相对于根元素的字体大小</li>
+                <li>vw：视窗宽度的1%</li>
+                <li>vh：视窗高度的1%</li>
+            </ul>
+        </li>
+    </ul>
+    <h4 class="title">
+        <a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context">块格式化上下文(BFC)</a>
+    </h4>
+    <ul>
+        <li>根元素</li>
+        <li>浮动元素</li>
+        <li>position是absolute、fixed</li>
+        <li>overflow不是visible、clip的块元素</li>
+        <li>包含内部浮动</li>
+        <li>排除外部浮动</li>
+        <li>阻止外边距重叠</li>
+    </ul>
+    <h4 class="title">
+        <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Flexible_Box_Layout">flex</a>
+    </h4>
+    <ul>
+        <li>主轴</li>
+        <li>交叉轴</li>
+    </ul>
+    <button class="button">click</button>
+</body>
+
+</html>
