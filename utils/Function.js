@@ -59,3 +59,7 @@ Function.prototype.myCall = function(context,...argus){
     return result; 
 }
 getName.myCall(obj,12,12);
+
+//Object.preventExtensions:不能添加新的属性
+//Object.seal:当前属性的值只要原来的可写的就可以改变
+//Object.freeze:冻结一个对象，不能修改，不能添加，不能删除
