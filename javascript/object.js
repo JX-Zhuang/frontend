@@ -20,6 +20,7 @@
 
 /**
  * 遍历对象相关
+ * in:判断自身的可枚举、自身的不可枚举、自身的Symbol键、继承的可枚举、继承的不可枚举、继承的Symbol键
  * Object.keys:返回一个包含对象自身可枚举属性名称的数组
  * for...in:迭代一个对象的除Symbol以外的可枚举属性，包括继承的可枚举属性
  * Object.getOwnPropertyNames:返回一个由指定对象的所有自身属性的属性名组成的数组，包括不可枚举属性但不包括Symbol值作为名称的属性
@@ -30,6 +31,10 @@
 
 /**
  * 对象上的属性描述相关
+ * 
+ * Object.getOwnPropertyDescriptor(obj, prop)
+ * Object.getOwnPropertyDescriptors(obj):获取一个对象的所有自身属性的描述符，包括Symbol键
+ * 
  * Object.defineProperties(obj, props)
  * Object.defineProperty(obj,prop,descriptor)
  * descriptor:
@@ -39,6 +44,7 @@
  *  writable:当且仅当writable为true时，value可以被赋值运算符改变。默认为false
  *  get:默认undefined
  *  set:默认undefined
+ * 
  * Object.prototype.propertyIsEnumerable:返回指定的属性是否可以枚举。原型链继承的属性，返回false
  */
 
