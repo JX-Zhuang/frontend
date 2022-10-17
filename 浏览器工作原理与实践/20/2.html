@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const runSomeTime = (time) => {
+            const startTime = Date.now();
+            while (Date.now() - startTime < time);
+        };
+        const validateForm = () => runSomeTime(10);
+        const showSpinner = () => runSomeTime(10);
+        const saveToDatabase = () => runSomeTime(10);
+        const updateUI = () => runSomeTime(10);
+        const sendAnalytics = () => runSomeTime(10);
+        function yieldToMain() {
+            return new Promise(resolve => {
+                setTimeout(resolve, 0);
+            });
+        }
+        async function saveSettings() {
+            //任务数组
+            const tasks = [validateForm, showSpinner, saveToDatabase, updateUI, sendAnalytics]
+            // 循环任务  
+            while (tasks.length > 0) {
+                // 将第一个任务移出任务数组
+                const task = tasks.shift();
+                // 运行任务:  
+                task();
+                // 让出主线程  
+                await yieldToMain();
+            }
+            console.log(3)
+        }
+        saveSettings();
+        console.log(1)
+    </script>
+</body>
+
+</html>

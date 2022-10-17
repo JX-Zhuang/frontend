@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lazy-Load</title>
+    <style>
+        .img {
+            width: 200px;
+            height: 200px;
+            background-color: gray;
+        }
+
+        .pic {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    </style>
+    <script>
+        // 获取所有的图片标签
+        const imgs = document.getElementsByTagName('img')
+        // 获取可视区域的高度
+        const viewHeight = window.innerHeight || document.documentElement.clientHeight
+        // num用于统计当前显示到了哪一张图片，避免每次都从第一张图片开始检查是否露出
+        let num = 0
+        function lazyload() {
+            for (let i = num; i < imgs.length; i++) {
+                // 用可视区域高度减去元素顶部距离可视区域顶部的高度
+                let distance = viewHeight - imgs[i].getBoundingClientRect().top
+                // 如果可视区域高度大于等于元素顶部距离可视区域顶部的高度，说明元素露出
+                if (distance >= 0) {
+                    // 给元素写入真实的src，展示图片
+                    imgs[i].src = imgs[i].getAttribute('data-src')
+                    // 前i张图片已经加载完毕，下次从第i+1张开始检查是否露出
+                    num = i + 1
+                }
+            }
+        }
+        // 监听Scroll事件
+        window.addEventListener('scroll', lazyload, false);
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="img">
+            <img class="pic" src="./bg.png" alt="加载中" data-src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Flmg.jj20.com%2Fup%2Fallimg%2F4k%2Fs%2F02%2F2109242332225H9-0-lp.jpg&refer=http%3A%2F%2Flmg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1668247448&t=fe42c17089c0d9f2eb2013953b977f1f">
+        </div>
+        <div class="img">
+            <img class="pic" src="./bg.png" alt="加载中" data-src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F9%2F547d49cfac09f.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1668247534&t=6ff5d92c98a04e18a5a406036a3e2234">
+        </div>
+        <div class="img">
+            <img class="pic" src="./bg.png" alt="加载中" data-src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2Ftp05%2F1Z9291TIBZ6-0-lp.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1668247534&t=acd22dd830af10d193e6f996b0ae338f">
+        </div>
+        <div class="img">
+            <img class="pic" src="./bg.png" alt="加载中" data-src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Flmg.jj20.com%2Fup%2Fallimg%2F1114%2F010421143P0%2F210104143P0-13-1200.jpg&refer=http%3A%2F%2Flmg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1668247534&t=0956fc76228434e779c6aeac50ede0c5">
+        </div>
+        <div class="img">
+            <img class="pic" src="./bg.png" alt="加载中" data-src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2019-08-01%2F5d42444be8c79.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1668247534&t=5bf743b6d862b355dc6b2cd2701ea72b">
+        </div>
+        <div class="img">
+            <img class="pic" src="./bg.png" alt="加载中" data-src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Ffile.moyublog.com%2Fd%2Ffile%2F2021-02-08%2F3057a115a0e7684b71b066a99d95d749.jpg&refer=http%3A%2F%2Ffile.moyublog.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1668247534&t=cdc519daacc3829b8e471bc1459c5a7c">
+        </div>
+        <div class="img">
+            <img class="pic" src="./bg.png" alt="加载中" data-src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F1%2F57ac35ada999b.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1668247534&t=b3becb4a77622b807e3e177e1249ebe7">
+        </div>
+        <div class="img">
+            <img class="pic" src="./bg.png" alt="加载中" data-src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Flmg.jj20.com%2Fup%2Fallimg%2F1113%2F041620104229%2F200416104229-8-1200.jpg&refer=http%3A%2F%2Flmg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1668247534&t=23e027374df71e82e153bdf8e63d7959">
+        </div>
+        <div class="img">
+            <img class="pic" src="./bg.png" alt="加载中" data-src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F8%2F57a7ef5056deb.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1668247534&t=ee8900bf4de64992df9e36079ff4c587">
+        </div>
+        <div class="img">
+            <img class="pic" src="./bg.png" alt="加载中" data-src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Flmg.jj20.com%2Fup%2Fallimg%2F4k%2Fs%2F02%2F2109242332225H9-0-lp.jpg&refer=http%3A%2F%2Flmg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1668247448&t=fe42c17089c0d9f2eb2013953b977f1f">
+        </div>
+    </div>
+</body>
+
+</html>

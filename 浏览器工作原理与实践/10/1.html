@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // function bar() {
+        //     debugger;
+        //     console.log(myName)
+        // }
+        // function foo() {
+        //     var myName = "极客邦"
+        //     bar();
+        //     console.log(myName);
+        // }
+        // var myName = "极客时间"
+        // foo()
+
+
+        // function bar() {
+        //     var myName = "极客世界"
+        //     let test1 = 100
+        //     if (1) {
+        //         let myName = "Chrome浏览器"
+        //         console.log(test)
+        //     }
+        // }
+        // function foo() {
+        //     var myName = "极客邦"
+        //     let test = 2
+        //     {
+        //         let test = 3
+        //         bar()
+        //     }
+        // }
+        // var myName = "极客时间"
+        // let myAge = 10
+        // let test = 1
+        // foo()
+
+
+
+        // function foo() {
+        //     var myName = "极客时间"
+        //     let test1 = 1
+        //     const test2 = 2
+        //     var innerBar = {
+        //         getName: function () {
+        //             console.log(test1)
+        //             return myName
+        //         },
+        //         setName: function (newName) {
+        //             myName = newName
+        //         }
+        //     }
+        //     return innerBar
+        // }
+        // var bar = foo()
+        // bar.setName("极客邦")
+        // bar.getName()
+        // console.log(bar.getName())
+
+        function test() {
+            var bar = {
+                myName: "time.geekbang.com",
+                printName: function () {
+                    console.log(myName)
+                }
+            }
+            function foo() {
+                let myName = "极客时间"
+                return bar.printName
+            }
+            let myName = "极客邦"
+            let _printName = foo()
+            _printName()    //极客邦
+            bar.printName() //极客邦
+        }
+
+        test();
+    </script>
+</body>
+
+</html>
