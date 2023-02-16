@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // const start = Date.now();
+        // setTimeout(() => {
+        //     while (Date.now() - start < 5000);
+        //     console.log(Date.now() - start);
+        // }, 1000);
+        // setTimeout(() => {
+        //     console.log(Date.now() - start);
+        // }, 2000);
+
+
+        function HaveResolvePromise() {
+            return 88;
+        }
+        async function getResult() {
+            console.log(1)
+            let a = await HaveResolvePromise()
+            console.log(a)
+            console.log(2)
+        }
+        console.log(0)
+        getResult()
+        console.log(3)
+    </script>
+</body>
+
+</html>
