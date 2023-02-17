@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { useEffect, useState } from 'react';
+import List from './components/List';
+import useList, { useGetList } from './hooks/useList';
 function App() {
+  const [show, setShow] = useState(false);
+  const { getList } = useGetList();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <List />
+      {show && <List />}
+      <button onClick={() => setShow(!show)}>trigger show list</button>
+      <button onClick={() => getList()}>force update</button>
+      {/* <List list={state.score} />
+      <List list={state.users} />
+      <List list={state.flows} /> */}
     </div>
   );
 }
