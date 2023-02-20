@@ -1,12 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import getList from '../../api/list';
+// import React, { useEffect, useState, Suspense } from 'react';
+// import useList from '../../hooks/useList';
+// import CreateUserList from '../CreateUserList';
+// function UserList() {
+//     return <CreateUserList name="UseList" hook={useList} />;
+// }
+// export default UserList;
+import React, { useEffect, useState, Suspense } from 'react';
 import useList from '../../hooks/useList';
-
-const List = props => {
-    const { data, isLoading } = useList({ id: 123 });
-    if (isLoading) return 'loading';
-    return <ul>
+let id = 0;
+const List = () => {
+    const state = useList({
+        initParams: id
+    });
+    const { data, error, isLoading, isValidating } = state;
+    console.log(state, data, error, isLoading, isValidating);
+    return isLoading ? 'loading' : error ? <div>{error}</div> : <ul>
         {data.map((item) => <li key={item.id}>{item.name}</li>)}
     </ul>
-};
-export default List;
+}
+
+function UserList() {
+    const [count, setCount] = useState(0);
+    const { mutate } = useList();
+    return (
+        <div>
+            <h2>UserList</h2>
+            <List />
+            <button onClick={() => setCount(count+1)}>{count}</button>
+            <button onClick={() => mutate(++id)}>force update</button>
+        </div>
+    );
+}
+export default UserList;
