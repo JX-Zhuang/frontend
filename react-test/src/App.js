@@ -1,20 +1,17 @@
-import { useEffect, useState } from 'react';
-import List from './components/List';
-import UserList from './components/UserList';
-import { useGetList } from './hooks/useList';
+import React, { useEffect, useState, Suspense } from 'react';
+import useList from './hooks/useList';
+// import useList from './hooks/useListSWR';
+const List = React.lazy(() => import('./components/List'));
 function App() {
   const [show, setShow] = useState(false);
-  const { getList } = useGetList();
+  const { getList } = useList();
+  console.log('app render');
   return (
     <div className="App">
-      <List />
-      <UserList />
-      {show && <List />}
-      <button onClick={() => setShow(!show)}>trigger show list</button>
-      <button onClick={() => getList({ id: 123 })}>force update</button>
-      {/* <List list={state.score} />
-      <List list={state.users} />
-      <List list={state.flows} /> */}
+      <Suspense fallback={<div>loading</div>}>
+        <List />
+      </Suspense>
+      <button onClick={() => getList()}>force update</button>
     </div>
   );
 }

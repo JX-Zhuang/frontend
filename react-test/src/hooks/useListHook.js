@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import getList from '../api/list';
-import UserList from '../store/UserList';
 const createGlobalState = (initState, initRef) => {
     let globalState = initState, globalRef = initRef;
     const listeners = [];
@@ -40,16 +39,39 @@ const useGlobalState = createGlobalState({
     data: undefined,
     isLoading: true
 }, { isFetching: false });
-const userList = new UserList();
-const useList = () => {
-    const [state, setSate] = useState(userList.getState());
+const useFetcher = (fetcher, init = true) => {
+    const [state, setState, globalRef] = useGlobalState();
+    const ref = useRef();
+    ref.current = {
+        async mutate() {
+            if (globalRef.isFetching) return;
+            globalRef.isFetching = true;
+            const data = await fetcher();
+            globalRef.isFetching = false;
+            setState(state => ({
+                ...state,
+                isLoading: false,
+                data
+            }));
+        }
+    };
     useEffect(() => {
-        userList.initGetList();
-        userList.subscribe(setSate);
+        init && ref.current.mutate();
     }, []);
     return {
         ...state,
-        getList: userList.getList
+        mutate: ref.current.mutate
+    }
+};
+const useList = (init) => {
+    const { data, isLoading, error, mutate, isValidating } = useFetcher(getList, init);
+    debugger
+    return {
+        data,
+        isLoading,
+        error,
+        getList: mutate,
+        isValidating
     }
 };
 export default useList;
