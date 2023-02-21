@@ -18,6 +18,9 @@ class FetchQueue {
         return this.queue[this.queue.length - 1];
     }
 }
+const EVENTS = {
+    GET_DATA: "GET_DATA"
+};
 class CreateStore {
     constructor(fetch) {
         this.fetch = fetch;
@@ -72,7 +75,7 @@ class CreateStore {
         lastFetch();
     }
     subscribe = (callback) => {
-        return this.pubSub.subscribe('getList', callback);
+        return this.pubSub.subscribe(EVENTS.GET_DATA, callback);
     }
     setState(payload) {
         let state = payload;
@@ -82,7 +85,7 @@ class CreateStore {
         for (const key in this.state) {
             if (this.state[key] !== state[key]) {
                 this.state = state;
-                this.pubSub.publish('getList', this.getState());
+                this.pubSub.publish(EVENTS.GET_DATA, this.getState());
                 return;
             }
         }
