@@ -1,4 +1,9 @@
 import PubSub from "./PubSub";
+const sleep = (time = 2000) => new Promise((resolve) => {
+    setTimeout(() => {
+        resolve(true);
+    }, time);
+});
 class FetchQueue {
     constructor() {
         this.queue = [];
@@ -18,33 +23,28 @@ class CreateStore {
         this.fetch = fetch;
         this.fetchQueue = new FetchQueue();
         this.pubSub = new PubSub();
-        this.initFlag = false;
         this.firstGetData = false;
-        this.innerState = {
-            data: undefined
-        };
         this.state = {
             data: undefined,
             error: undefined,
             isLoading: true,
-            isValidating: true,
-            mutate: this.mutate
+            isValidating: true
         };
     }
     init(setState, params) {
-        this.subscribe(setState);
-        // this.initMutate(params);
-        this.initFlag = true;
+        const { unsubscribe } = this.subscribe(setState);
+        return {
+            unsubscribe
+        };
     }
-    enqueue(fetch) {
+    enqueue(params) {
         const thisFetch = async () => {
             let data, error;
             try {
-                data = await fetch();
+                data = await this.fetch(params);
             } catch (e) {
                 error = e;
             }
-            this.firstGetData = true;
             if (thisFetch === this.fetchQueue.tail) {
                 this.setState(state => ({
                     ...state,
@@ -53,12 +53,16 @@ class CreateStore {
                     isLoading: false,
                     error
                 }));
+                if (error) {
+                    sleep();
+                    this.mutate(params);
+                }
             }
         };
         this.fetchQueue.enqueue(thisFetch);
     }
     mutate = async (params) => {
-        this.enqueue(() => this.fetch(params));
+        this.enqueue(params);
         //todo 不设置state
         this.setState(state => ({
             ...state,
@@ -66,11 +70,6 @@ class CreateStore {
         }));
         const lastFetch = this.fetchQueue.tail;
         lastFetch();
-    }
-    initMutate = async (params) => {
-        if (this.state.data || this.initFlag) return this.state;
-        const state = await this.mutate(params);
-        return state;
     }
     subscribe = (callback) => {
         return this.pubSub.subscribe('getList', callback);
@@ -83,25 +82,31 @@ class CreateStore {
         for (const key in this.state) {
             if (this.state[key] !== state[key]) {
                 this.state = state;
-                this.pubSub.publish('getList', this.state);
+                this.pubSub.publish('getList', this.getState());
                 return;
             }
         }
     }
-    getState() {
+    getState(params) {
         const instance = this;
-        console.log('getState')
+        const { state } = instance;
         return {
             get data() {
-                console.log('getState,data')
                 if (!instance.firstGetData) {
-                    instance.mutate();
+                    instance.firstGetData = true;
+                    instance.mutate(params);
                 }
-                return instance.state.data;
+                return state.data;
             },
-            error: undefined,
-            isLoading: true,
-            isValidating: true,
+            get error() {
+                return state.error;
+            },
+            get isLoading() {
+                return state.isLoading;
+            },
+            get isValidating() {
+                return state.isValidating;
+            },
             mutate: this.mutate
         };
     }

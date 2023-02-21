@@ -1,22 +1,17 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import getList from '../api/list';
 import CreateStore from './CreateStore';
-const createUseStore = (fetch, initParams) => {
+const createUseStore = (fetch) => {
     const store = new CreateStore(fetch);
     const useStore = (props = {}) => {
-        const [state, setSate] = useState(() => {
-            console.log(999)
-            return store.getState();
-        });
+        const [state, setSate] = useState(() => store.getState(props.initParams));
         useEffect(() => {
-            store.init(setSate, {
-                ...initParams,
-                ...props.initParams
-            });
+            const { unsubscribe } = store.init(setSate);
+            return () => {
+                unsubscribe();
+            }
         }, []);
-        return {
-            ...state
-        };
+        return state;
     }
     return useStore;
 };

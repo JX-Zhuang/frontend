@@ -9,12 +9,12 @@ export default async (id) => {
         const time = 2000//Math.random() * 5000;
         // console.log('thisId:', thisId, time);
         setTimeout(() => {
-            // if (thisId % 2 === 0) {
+            if (id % 5 === 0) {
                 const list = getList(id);
                 resolve(list);
-            // } else {
-                // reject(`error:${id}`);
-            // }
+            } else {
+                reject(`error:${id}`);
+            }
         }, time);
     });
 }

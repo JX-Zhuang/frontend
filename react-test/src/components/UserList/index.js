@@ -20,13 +20,13 @@ const List = () => {
 }
 
 function UserList() {
-    const [count, setCount] = useState(0);
+    const [show, setShow] = useState(true);
     const { mutate } = useList();
     return (
         <div>
             <h2>UserList</h2>
-            <List />
-            <button onClick={() => setCount(count+1)}>{count}</button>
+            {show && <List />}
+            <button onClick={() => setShow(!show)}>click</button>
             <button onClick={() => mutate(++id)}>force update</button>
         </div>
     );
