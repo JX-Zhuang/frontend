@@ -6,6 +6,8 @@
 * 数据流向：api->store->component
 #### 使用context
 * 会导致子组件渲染，需要用React.memo优化
+#### 使用hooks
+* 需要有改变全局的hook函数，多个地方使用state，setState后每个使用state的地方都要更新
 #### swr
 * swr能满足大部分的需求，而且自动返回请求函数的状态，但是有下面的问题。
 * 深度绑定React。
@@ -49,3 +51,7 @@ const useFetchData = () => {
     }
 };
 ```
+#### 自研
+* 核心代码在`react-test/src/store`
+* `createUseStore`创建hook
+* 如果要支持类组件，需要自己扩展一个高阶组件，类似`createUseStore`
