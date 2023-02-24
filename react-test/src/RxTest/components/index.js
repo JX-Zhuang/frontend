@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import list from '../modals/list';
+import '../practice'
 const List = () => {
     const [data, setData] = useState([]);
     const getList = () => {
