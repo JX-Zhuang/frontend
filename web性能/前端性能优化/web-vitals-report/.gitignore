@@ -1,0 +1,14 @@
+# OS or Editor folders
+.DS_Store
+
+# Node stuff
+node_modules
+
+# Firebase files
+.firebase
+
+# Public directory
+public
+
+# Feature TODO list
+TODO.md

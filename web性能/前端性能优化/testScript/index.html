@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link href="style.css" rel="stylesheet" />
+    <title>Critical Path: Script</title>
+</head>
+
+<body onload="measureCRP()">
+    <p>Hello <span>web performance</span> students!</p>
+    <div><img src="../1.png" /></div>
+    <!-- <script src="app.js" async></script> -->
+    <!-- <script src="app.js" defer></script>  -->
+    <script src="app.js" async></script>
+    <!-- <script>
+        var span = document.getElementsByTagName('span')[0];
+        span.textContent = 'interactive'; // change DOM text content
+        span.style.display = 'inline'; // change CSSOM property
+        // create a new element, style it, and append it to the DOM
+        var loadTime = document.createElement('div');
+        loadTime.textContent = 'You loaded this page on: ' + new Date();
+        loadTime.style.color = 'blue';
+        document.body.appendChild(loadTime);
+        const sleep = () => {
+            const now = Date.now();
+            while (now + 2000 > Date.now());
+            console.log('end');
+        };
+        sleep();
+    </script> -->
+</body>
+
+</html>

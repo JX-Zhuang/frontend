@@ -1,0 +1,58 @@
+{
+  "name": "web-vitals-report",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Create Web Vitals reports",
+  "scripts": {
+    "build:clean": "rm -rf public",
+    "build:compile": "rollup -c",
+    "build": "run-s build:*",
+    "deploy": "NODE_ENV=production npm run build && firebase deploy -P web-vitals-report",
+    "lint": "eslint rollup.config.js \"src/**/*.js\"",
+    "lint:fix": "eslint --fix rollup.config.js \"src/**/*.js\"",
+    "stage": "firebase deploy -P web-vitals-report-staging",
+    "dev:build": "rollup -c -w",
+    "dev:server": "superstatic -p 4040",
+    "start": "run-p dev:*"
+  },
+  "author": {
+    "name": "Philip Walton",
+    "email": "philip@philipwalton.com",
+    "url": "http://philipwalton.com"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GoogleChromeLabs/web-vitals-report.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GoogleChromeLabs/web-vitals-report/issues"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "@rollup/plugin-replace": "^2.4.2",
+    "cssnano": "^5.0.5",
+    "eslint": "^7.27.0",
+    "eslint-config-google": "^0.14.0",
+    "firebase-tools": "^9.12.1",
+    "fs-extra": "^10.0.0",
+    "globby": "^11.0.3",
+    "husky": "^6.0.0",
+    "idb": "^6.1.2",
+    "lit-html": "^1.4.1",
+    "npm-run-all": "^4.1.5",
+    "nunjucks": "^3.2.3",
+    "postcss": "^8.3.0",
+    "postcss-import": "^14.0.2",
+    "postcss-preset-env": "^5.3.0",
+    "rollup": "^2.50.5",
+    "rollup-plugin-terser": "^7.0.2",
+    "superstatic": "^7.1.0",
+    "web-vitals": "^3.1.1"
+  }
+}

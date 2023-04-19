@@ -1,0 +1,11 @@
+@media print {
+    body {
+        background: green;
+    }
+
+    p {
+        border   : 1px solid green;
+        font-size: 50px;
+        color    : red;
+    }
+}
