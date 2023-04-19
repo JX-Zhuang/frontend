@@ -64,3 +64,12 @@
 * [测量关键的渲染路径](https://web.dev/critical-rendering-path-measure-crp/)
     * Lighthouse
     * Navigation Timing API
+        * `domLoading`：这是整个过程的起始时间戳，浏览器即将开始解析第一个收到的HTML文档的字节。
+        * `domInteractive`：标志着浏览器完成了对所有HTML的解析，DOM构建完成。
+        * `domContentLoaded`：标志着DOM已经准备好了，而且没有样式表阻挡JavaScript的执行--这意味着我们现在可以（潜在地）构建渲染树。
+
+        * 关键点：
+        * `domInteractive`：DOM准备好
+        * `domContentLoaded`：DOM和CSSOM准备好
+            * 如果没有阻塞的JavaScript，`domContentLoaded`将在`domInteractive`之后立即触发。
+        * `domComplete`：页面及所有子资源都已经准备就绪。
