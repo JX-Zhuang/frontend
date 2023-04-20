@@ -20,18 +20,13 @@
     <!-- <link href="./style.css" rel="stylesheet" type="text/css" /> -->
     <!-- <link rel="prefetch" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.css" as="style" /> -->
     <!-- <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.css" as="style" /> -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.css" rel="stylesheet" /> -->
+    <!-- <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.css" as="style"  onload="this.rel='stylesheet'"> -->
     <title>Document</title>
-    <style>
-        body {
-            color: red;
-        }
-    </style>
     <!-- <link rel="preload" as="image"
         href="https://img0.baidu.com/it/u=1398560146,3801062520&fm=253&fmt=auto&app=138&f=JPEG?w=333&h=500"
         media="print" /> -->
     <!-- <script src="./1.js" async></script> -->
-    <!-- <script src="./1.js" defer></script> -->
+    <!-- <script src="./1.js"></script> -->
     <!-- <script>
         console.log('1.js')
         const date = Date.now();
@@ -40,11 +35,16 @@
     <!-- <script src="https://cdn.sstatic.net/Js/third-party/npm/@stackoverflow/stacks/dist/js/stacks.min.js?v=b95611219aa3"></script> -->
     <!-- <script src="https://cdn.sstatic.net/Js/third-party/npm/@stackoverflow/stacks/dist/js/stacks.min.js?v=b95611219aa3" async></script> -->
     <!-- <script src="https://cdn.sstatic.net/Js/third-party/npm/@stackoverflow/stacks/dist/js/stacks.min.js?v=b95611219aa3" defer></script> -->
+    <style>
+        img {
+            aspect-ratio: 333 / 500;
+        }
+    </style>
 </head>
 
 <body>
+    <img width="333"  src="https://img0.baidu.com/it/u=1398560146,3801062520&fm=253&fmt=auto&app=138&f=JPEG?w=333&h=500" />
     <p>前端性能优化 test</p>
-    <!-- <img src="https://img0.baidu.com/it/u=1398560146,3801062520&fm=253&fmt=auto&app=138&f=JPEG?w=333&h=500" /> -->
 </body>
 
 </html>
