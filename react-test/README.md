@@ -1,4 +1,25 @@
-### 需求
+## react版本主要对比
+### [React 17](https://legacy.reactjs.org/blog/2020/10/20/react-v17.html)
+* 事件委托在根组件上，不委托在document上。在React 16里，如果用`document.body.addEventListener('click', ...)`，在组件里无法用`e.stopPropagation()`停止冒泡。因为原生事件在react之前触发。
+* 新的JSX转化。
+### [React 18](https://legacy.reactjs.org/blog/2022/03/29/react-v18.html)
+* [自动批处理](https://github.com/reactwg/react-18/discussions/21)。
+    * react17里只有在浏览器事件（click）里会有批处理，在 `promises`、`setTimeout`, `native event`里是不会批处理的。
+    * react18里使用`ReactDOM.createRoot`会自动批处理（包括`promises`、`setTimeout`, `native event`)，`ReactDOM.render`保持之前的行为。如果不用批处理，使用`ReactDOM.flushSync`。
+* Transitions，并发执行，用于区分紧急更新和非紧急更新。用于非紧急的更新。
+    * useTransition
+    * startTransition
+* Suspense服务端渲染
+* 新hooks
+    * [useId](https://react.dev/reference/react/useId)：生成唯一的id
+    * [useTransition](https://react.dev/reference/react/useTransition)
+    * [useDeferredValue](https://react.dev/reference/react/useDeferredValue)：延迟渲染
+    * [useSyncExternalStore](https://react.dev/reference/react/useSyncExternalStore)：可以传入外部的store
+    * [useInsertionEffect](https://react.dev/reference/react/useInsertionEffect)：用于JS库作者中的CSS。除非你正在JS库中处理CSS，并且需要一个注入样式的地方，否则你可能需要useEffect或useLayoutEffect。
+## 实现react hooks
+### useState
+### useEffect
+## 需求
 * 一个页面，多个组件用到同一个接口，每个组件分别请求该接口，浪费请求。如何缓存数据。
 * 数据缓存后，如果重新请求数据，通知组件重新渲染。
 * 期望提供一种机制，可以请求数据，缓存数据，手动请求数据，尽量解耦。
