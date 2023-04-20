@@ -31,7 +31,7 @@
     * JavaScript 和 CSS 渲染阻塞
     * 资源加载时间
     * 客户端渲染
-#### 使用PRPL模式做到即时加载
+#### [使用PRPL模式做到即时加载](https://web.dev/apply-instant-loading-with-prpl/)
     * Push：预加载最重要的资源
         * preload
     * Render：尽快渲染初试路径
@@ -67,9 +67,27 @@
         * `domLoading`：这是整个过程的起始时间戳，浏览器即将开始解析第一个收到的HTML文档的字节。
         * `domInteractive`：标志着浏览器完成了对所有HTML的解析，DOM构建完成。
         * `domContentLoaded`：标志着DOM已经准备好了，而且没有样式表阻挡JavaScript的执行--这意味着我们现在可以（潜在地）构建渲染树。
-
+        * `domComplete`：顾名思义，所有的处理已经完成，页面上的所有资源（图片等）已经完成下载--换句话说，加载旋钮已经停止旋转。
+        * `loadEvent`：作为每个页面加载的最后一步，浏览器会触发一个onload事件，该事件可以触发额外的应用逻辑。
         * 关键点：
-        * `domInteractive`：DOM准备好
-        * `domContentLoaded`：DOM和CSSOM准备好
-            * 如果没有阻塞的JavaScript，`domContentLoaded`将在`domInteractive`之后立即触发。
-        * `domComplete`：页面及所有子资源都已经准备就绪。
+            * `domInteractive`：DOM准备好
+            * `domContentLoaded`：DOM和CSSOM准备好
+                * 如果没有阻塞的JavaScript，`domContentLoaded`将在`domInteractive`之后立即触发。
+            * `domComplete`：页面及所有子资源都已经准备就绪。
+* [分析关键的渲染路径性能](https://web.dev/critical-rendering-path-analyzing-crp/)
+* [优化关键渲染路径](https://web.dev/critical-rendering-path-optimizing-critical-rendering-path/)
+    * 为了提供最快的第一次渲染，需要最小化下面三个变量：
+        * 关键资源的数量
+        * 关键路径的长度
+        * 关键字节数
+* [PageSpeed规则和建议](https://web.dev/critical-rendering-path-page-speed-rules-and-recommendations/)
+    * 排除渲染阻塞的JavaScript和CSS
+    * 优化JavaScript的使用
+    * 首选异步JavaScript资源
+    * 避免同步服务器调用
+    * 推迟解析JavaScript
+    * 避免长时间运行的JavaScript
+    * 优化CSS的使用
+    * 把CSS放在文档的头部
+    * 避免CSS imports
+    * 内联渲染阻塞 CSS
