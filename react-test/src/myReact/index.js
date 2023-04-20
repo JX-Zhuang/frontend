@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useId, useRef, useTransition, useDeferredValue, useSyncExternalStore, useLayoutEffect } from 'react';
+import React, { useEffect, useId, useRef, useTransition, useDeferredValue, useSyncExternalStore, useLayoutEffect } from 'react';
 const data = new Array(10000).fill(0).map((_, index) => index + 1);
 let state = {
     count: 0
@@ -96,7 +96,7 @@ const TestNewHooks2 = () => {
         <div>state.count:{state.count}</div>
     </div>
 };
-const App = () => {
+const App1 = () => {
     const ref = useRef(null);
     const [tooltipHeight1, setTooltipHeight1] = useState(0);
     const [tooltipHeight, setTooltipHeight] = useState(0); // You don't know real height yet
@@ -136,4 +136,25 @@ const App = () => {
         <TestNewHooks2 />
     </div>
 };
+
+
+
+
+
+
+
+
+
+const useState = (state) => {
+    const dispatch = () => {
+        
+    };
+    return [state, dispatch];
+};
+const App = () => {
+    const [i, setI] = useState(0);
+    return <div>
+        <button onClick={() => setI(i + 1)}>{i}</button>
+    </div>
+}
 export default App;
