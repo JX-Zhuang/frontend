@@ -70,15 +70,28 @@
         }
     </style>
     <style>
-        .test{
-            color:green;
+        .test {
+            color: green;
         }
     </style>
-    <link href="./style.css" rel="stylesheet" type="text/css" /> 
+    <link href="./style.css" rel="stylesheet" type="text/css" />
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: red !important;
+        }
 
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: green !important;
+        }
+    </style>
 </head>
 
 <body>
+    <div class="box">当两个样式都使用!important时，权重值大的优先级更高</div>
     <h4 class="title">
         <p class="test">外部、内部、内敛优先级</p>
     </h4>
