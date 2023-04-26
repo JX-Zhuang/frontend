@@ -2,6 +2,10 @@
  * 实现类似：a instanceof b 的功能
  * a instanceof b
  * 返回b的prototype是不是在a的原型链上
+ * Number，Boolean，String基本数据类型不能判断
+ * console.log(1 instanceof Number);                    // false
+ * console.log(true instanceof Boolean);                // false 
+ * console.log('str' instanceof String);                // false  
  */
 function myInstanceof(obj, construct) {
     const prototype = construct.prototype;
