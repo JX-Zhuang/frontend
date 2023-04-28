@@ -1,4 +1,4 @@
-import React, { useEffect, useId, useRef, useTransition, useDeferredValue, useSyncExternalStore, useLayoutEffect } from 'react';
+import React, { useEffect, useId, useRef, useTransition, useDeferredValue, useSyncExternalStore, useLayoutEffect, useState } from 'react';
 const data = new Array(10000).fill(0).map((_, index) => index + 1);
 let state = {
     count: 0
@@ -98,39 +98,40 @@ const TestNewHooks2 = () => {
 };
 const App1 = () => {
     const ref = useRef(null);
-    const [tooltipHeight1, setTooltipHeight1] = useState(0);
     const [tooltipHeight, setTooltipHeight] = useState(0); // You don't know real height yet
-    useLayoutEffect(() => {
-        const { height } = ref.current.getBoundingClientRect();
-        console.log(height)
-        setTooltipHeight(height); // Re-render now that you know the real height
-    }, []);
-
+    const [tooltipHeight1, setTooltipHeight1] = useState(0);
     useEffect(() => {
         const { height } = ref.current.getBoundingClientRect();
         console.log(height)
         setTooltipHeight1(height); // Re-render now that you know the real height
     }, []);
 
+    useLayoutEffect(() => {
+        const { height } = ref.current.getBoundingClientRect();
+        console.log(height)
+        setTooltipHeight(height); // Re-render now that you know the real height
+    }, []);
+
 
     const [state1, setState1] = useState("hello world");
     const [state2, setState2] = useState("hello world");
-    useEffect(() => {
-        let i = 0;
-        while (i <= 100000000) {
-            i++;
-        };
-        setState1("world hello");
-    }, []);
-    useLayoutEffect(() => {
-        let i = 0;
-        while (i <= 100000000) {
-            i++;
-        };
-        setState2("world hello");
-    }, []);
+    // useEffect(() => {
+    //     let i = 0;
+    //     while (i <= 100000000) {
+    //         i++;
+    //     };
+    //     setState1("world hello");
+    // }, []);
+    // useLayoutEffect(() => {
+    //     let i = 0;
+    //     while (i <= 100000000) {
+    //         i++;
+    //     };
+    //     setState2("world hello");
+    // }, []);
     return <div ref={ref}>
-        <div>{tooltipHeight}</div>
+        <p>test</p>
+        <div>tooltipHeight:{tooltipHeight}</div>
         <div>tooltipHeight1:{tooltipHeight1}</div>
         <TestNewHooks />
         <TestNewHooks2 />
@@ -145,16 +146,31 @@ const App1 = () => {
 
 
 
-const useState = (state) => {
-    const dispatch = () => {
-        
-    };
-    return [state, dispatch];
-};
+// const useState = (state) => {
+//     const dispatch = () => {
+
+//     };
+//     return [state, dispatch];
+// };
 const App = () => {
+    const ref = useRef(null);
     const [i, setI] = useState(0);
-    return <div>
-        <button onClick={() => setI(i + 1)}>{i}</button>
+    // useEffect(() => {
+    //     if (i === 0) {
+    //         const a = Math.random();
+    //         setI(a);
+    //     }
+    // }, [i]);
+    // useLayoutEffect(() => {
+    //     const { height } = ref.current.getBoundingClientRect();
+    //     console.log(height)
+    // }, []);
+    useEffect(() => {
+        const { height } = ref.current.getBoundingClientRect();
+        console.log(height)
+    }, []);
+    return <div ref={ref}>
+        <button onClick={() => setI(0)}>{i}</button>
     </div>
 }
-export default App;
+export default App1;

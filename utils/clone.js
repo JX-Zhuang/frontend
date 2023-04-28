@@ -1,3 +1,4 @@
+const date = new Date();
 let obj = {
     married: true,
     age: 10,
@@ -12,7 +13,8 @@ let obj = {
     hobbies: ['抽烟', '喝酒', '烫头'],
     error: new Error('error'),
     pattern: /^regexp$/ig,
-    date: new Date()
+    date1: date,
+    date2:date,
     // math: Math,
     // json: JSON,
     // document: document,
@@ -61,5 +63,5 @@ function clone(source, map = new Map()) {
 }
 const obj2 = clone(obj);
 
-console.log('obj', obj);
-console.log('obj2', obj2);
+console.log('obj', obj.date1 === obj.date2);
+console.log('obj2', obj2.date1 === obj2.date2,obj2.flag);
