@@ -38,7 +38,7 @@ const getType = (source) => Object.prototype.toString.call(source);
 const instancesTag = (type) => [regexType, errorType, dateType].includes(type);
 function deepClone(source, m = new Map()) {
     if (notObjectType(source)) return source;
-    if (m.get(source)) return m.get(source);
+    if (m.has(source)) return m.get(source);
     const type = getType(source);
     const constructor = source.constructor;
     let target;
